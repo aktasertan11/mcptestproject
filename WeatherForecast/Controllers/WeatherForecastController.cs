@@ -23,6 +23,7 @@ public class WeatherForecastController : ControllerBase
     {
         var x = "test";
         var y = "test";
+        var z = "test"; //TODO
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
