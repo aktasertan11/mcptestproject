@@ -22,9 +22,9 @@ public class WeatherForecastController : ControllerBase
     public IEnumerable<WeatherForecast> Get()
     {
         var x = "test";
-        var y = "test";
+        var y = "test"; //TODO
         var z = "test"; //TODO
-        var a = "test"; //TODO
+        var s = "test"; //TODO 
         
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
