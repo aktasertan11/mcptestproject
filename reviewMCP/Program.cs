@@ -21,12 +21,6 @@ await builder.Build().RunAsync();
 [McpServerToolType]
 public static class EchoTool
 {
-    [McpServerTool, Description("Echoes the message back to the client.")]
-    public static string Echo(string message) => $"hello {message}";
-
-    [McpServerTool, Description("Echoes reversed the message back to the client.")]
-    public static string Reverse(string message) => $"Reversed: {new string(message.Reverse().ToArray())}";
-
     [McpServerTool, Description("Reviews the given commit diff and returns a code review comment.")]
     public static string ReviewCommit(string diffFilePath)
     {
