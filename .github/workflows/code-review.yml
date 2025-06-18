@@ -39,8 +39,9 @@ jobs:
         id: review
         run: |
           set -x
-          dotnet run --project ./reviewMCP/reviewMCP.csproj tool ReviewCommit ./pr.diff
-          review=$(dotnet run --project ./reviewMCP/reviewMCP.csproj tool ReviewCommit ./pr.diff)
+          diff_content="$(cat pr.diff)"
+          dotnet run --project ./reviewMCP/reviewMCP.csproj tool ReviewCommit "$diff_content"
+          review=$(dotnet run --project ./reviewMCP/reviewMCP.csproj tool ReviewCommit "$diff_content")
           echo "REVIEW OUTPUT: $review"
           echo "review<<EOF" >> $GITHUB_OUTPUT
           echo "$review" >> $GITHUB_OUTPUT

@@ -22,12 +22,8 @@ await builder.Build().RunAsync();
 public static class EchoTool
 {
     [McpServerTool, Description("Reviews the given commit diff and returns a code review comment.")]
-    public static string ReviewCommit(string diffFilePath)
+    public static string ReviewCommit(string diff)
     {
-        // diffFilePath ile dosya içeriğini oku
-        if (!File.Exists(diffFilePath))
-            return $"Diff file not found: {diffFilePath}";
-        var diff = File.ReadAllText(diffFilePath);
         var comments = new List<string>();
         if (diff.Contains("TODO", StringComparison.OrdinalIgnoreCase))
             comments.Add("Found TODO in code. Please address before merging.");
