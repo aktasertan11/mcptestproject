@@ -33,6 +33,7 @@ public static class EchoTool
             comments.Add("Consider using explicit types instead of 'var'.");
         if (comments.Count == 0)
             return "No issues found.";
+        console.log(comments);
         return string.Join(" ", comments);
     }
 } 
