@@ -38,8 +38,13 @@ jobs:
       - name: Run MCP Code Review
         id: review
         run: |
+          set -x
+          cat pr.diff | dotnet run --project ./reviewMCP/reviewMCP.csproj tool ReviewCommit
           review=$(cat pr.diff | dotnet run --project ./reviewMCP/reviewMCP.csproj tool ReviewCommit)
-          echo "review=$review" >> $GITHUB_OUTPUT
+          echo "REVIEW OUTPUT: $review"
+          echo "review<<EOF" >> $GITHUB_OUTPUT
+          echo "$review" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Print review output
         run: cat pr.diff && echo "${{ steps.review.outputs.review }}"
