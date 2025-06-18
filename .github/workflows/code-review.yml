@@ -41,6 +41,9 @@ jobs:
           review=$(cat pr.diff | dotnet run --project ./reviewMCP/reviewMCP.csproj tool ReviewCommit)
           echo "review=$review" >> $GITHUB_OUTPUT
 
+      - name: Print review output
+        run: cat pr.diff && echo "${{ steps.review.outputs.review }}"
+
       - name: Post review as PR comment
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
