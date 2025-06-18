@@ -38,20 +38,11 @@ jobs:
       - name: Run MCP Code Review
         id: review
         run: |
-          set -x
           diff_content="$(cat pr.diff)"
-          dotnet run --project ./reviewMCP/reviewMCP.csproj tool ReviewCommit "$diff_content"
           review=$(dotnet run --project ./reviewMCP/reviewMCP.csproj tool ReviewCommit "$diff_content")
-          echo "REVIEW OUTPUT: $review"
           echo "review<<EOF" >> $GITHUB_OUTPUT
           echo "$review" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Print review output
-        run: cat pr.diff && echo "${{ steps.review.outputs.review }}"
-
-      - name: Print review tool output
-        run: dotnet run --project ./reviewMCP/reviewMCP.csproj tool ReviewCommit ./pr.diff
 
       - name: Post review as PR comment
         if: github.event_name == 'pull_request'
